@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        #map {
+            width: 100%;
+            height: 580px;
+            box-shadow: 5px 5px 5px #888;
+        }
+    </style>
+    <script src=" https://unpkg.com/leaflet@1.6.0/dist/leaflet.js "></script>
+    <link rel="stylesheet" href=" https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <script>
+        var osm = L.tileLayer(
+            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>' +
+                    "contributors",
+                maxZoom: 18,
+            }
+        );
+        var map = L.map("map", {
+            center: [41.66, -4.72],
+            zoom: 13,
+            layers: osm,
+            scrollWheelZoom: false,
+        });
+        L.control.scale().addTo(map);
+
+        var marker = L.marker([41.66, -4.71], {
+                draggable: true,
+                title: "pincha aquí",
+            })
+            .addTo(map)
+            .bindPopup("Universidad de Valladolid")
+            .openPopup();
+
+        //Añadir un icono de marcador
+        var myIcon = L.icon({
+            iconUrl: " http://mappinggis.com/wp-content/uploads/2015/03/logo_mappinggis_32331.png",
+            iconSize: [30, 30],
+            popupAnchor: [-1, -10],
+        });
+
+        var marker2 = L.marker([41.65246, -4.6982], {
+                icon: myIcon,
+            })
+            //.addTo(map)
+            .bindPopup("Localización de <b>MappingGIS.com </b>");
+
+        //Añadir un círculo
+        var circle = L.circle([41.658, -4.725], 700, {
+            color: "red",
+            fillColor: "#f03",
+            fillOpacity: 0.5,
+        }); //.addTo(map);
+
+        circle.bindPopup("Centro de la ciudad");
+
+        //Añadir un polígono
+        var polygon = L.polygon([
+                [41.67778, -4.72163],
+                [41.67349, -4.71511],
+                [41.66958, -4.72017],
+                [41.67169, -4.72515],
+            ]) //.addTo(map)
+            .bindPopup("Mercaolid");
+
+        polygon.bindTooltip("Soy una etiqueta", {
+            permanent: false,
+        });
+
+        //Añadir una línea
+        var pointA = new L.LatLng(41.65925, -4.70404);
+        var pointB = new L.LatLng(41.65166, -4.70421);
+        var latlngs = [pointA, pointB];
+        var polyline = L.polyline(latlngs, {
+                color: "red",
+            })
+            //.addTo(map)
+            .bindPopup("Avda. Juan Carlos I");
+
+        var geometrias = L.layerGroup([
+            polyline,
+            polygon,
+            circle,
+            marker,
+            marker2,
+        ]).addTo(map);
+
+        geometrias.eachLayer(function(layer) {
+            layer.bindPopup("Pertenezco a un grupo de geometrías");
+        });
+    </script>
+</body>
+
+</html>
