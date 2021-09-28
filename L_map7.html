@@ -29,13 +29,13 @@
                 maxZoom: 18,
             }
         );
-        var paises = new L.tileLayer.wms("http://localhost:8080/geoserver/earth/wms", {
+        var paises = new L.tileLayer.wms("http://localhost:8080/geoserver/workgroup/wms", {
             layers: 'paises',
             format: 'image/png',
             transparent: true,
             attribution: "NaturalEarth"
         });
-        var ciudades = new L.tileLayer.wms("http://localhost:8080/geoserver/earth/wms", {
+        var ciudades = new L.tileLayer.wms("http://localhost:8080/geoserver/workgroup/wms", {
             layers: 'ciudades',
             format: 'image/png',
             transparent: true,

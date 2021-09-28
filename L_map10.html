@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <script>
+        L.mapbox.accessToken = 'pk.eyJ1IjoibHVpc3Ntb250b3lhcCIsImEiOiJja3R1bnJ6MWQyMWtoMzJvOW11OGdza2FyIn0.Q1lBlP3r1C1GPLKJKmwv5g';
+        var mapboxTiles = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=' + L.mapbox.accessToken, {
+            attribution: '© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            tileSize: 512,
+            zoomOffset: -1
+        });
+
+        var map = L.map('map')
+            .addLayer(mapboxTiles)
+            .setView([42.3610, -71.0587], 15);
+    </script>
+</body>
+
+</html>
