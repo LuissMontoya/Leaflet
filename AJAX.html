@@ -19,13 +19,13 @@
 		<script>
 		var map = L.map('map').setView([0, 0], 2);
 			 
-		var owsrootUrl = 'http://localhost:8080/geoserver/workgroup/ows';
+		var owsrootUrl = 'http://localhost:8080/geoserver/ows';
 
 		var defaultParameters = {
 			service: 'WFS',
 			version: '1.0.0',
 		        request: 'GetFeature',
-			typeName: 'ciudades',
+			typeName: 'workgroup:ciudades',
 			outputFormat: 'application/json',
 
 		};
