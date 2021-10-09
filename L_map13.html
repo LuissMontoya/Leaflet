@@ -39,11 +39,14 @@
           id: "mapbox.light",
         }
       ).addTo(map);
+
       var countryStyle = {
         color: "#858585",
         weight: 2,
         opacity: 0.6,
       };
+
+
       function getColor(d) {
         return d > 100000000
           ? "#800026"
@@ -61,6 +64,8 @@
           ? "#FED976"
           : "#FFEDA0";
       }
+
+
       function style(feature) {
         return {
           fillColor: getColor(feature.properties.pop_est),
@@ -76,6 +81,7 @@
           layer.bindPopup(feature.properties.name);
         }
       }
+      
       var countriesJS = L.geoJson(countries, {
         onEachFeature: popup,
         style: style,

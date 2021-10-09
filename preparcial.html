@@ -32,7 +32,15 @@
       href=" https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
     />
 
-    <title> Parcial</title>
+    <script src="leaflet-search-master\src\leaflet-search.js"></script>
+    <link
+      rel="stylesheet"
+      href="leaflet-search-master\src\leaflet-search.css"
+    />
+
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
+
+    <title>Parcial</title>
   </head>
 
   <body>
@@ -57,6 +65,7 @@
           maxZoom: 18,
         }
       );
+
       var embalse = new L.tileLayer.wms("http://localhost:8080/geoserver/wms", {
         layers: "segmentos_embalses",
         format: "image/png",
@@ -81,7 +90,7 @@
       //Añadimos los dos objetos
       var baseMaps = {
         OpenStreetMap: osm,
-        google: google
+        google: google,
       };
 
       var overlayMaps = {
@@ -112,7 +121,8 @@
         "<img src='https://secure.webtoolhub.com/static/resources/icons/set20/309ee4e2927.png' height=15px, width=15px/> Embalses":
           embalse,
         "<img src='http://mappinggis.com/webmapping/city.png'/> Ríos": rios,
-        "<img src='http://mappinggis.com/webmapping/city.png'/> Límites": limites,
+        "<img src='http://mappinggis.com/webmapping/city.png'/> Límites":
+          limites,
       };
 
       //creamos el control de capas y lo añadimos al mapa
@@ -128,9 +138,6 @@
         return div;
       };
       legend.addTo(map);
-
-
-
 
     </script>
   </body>
